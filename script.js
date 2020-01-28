@@ -1,11 +1,12 @@
-    var url = new URLSearchParams(window.location.search);    
-    var chosenUser = url.get("username");
+    // var url = new URLSearchParams(window.location.search);    
+    // var chosenUser = url.get("username");
+    
     // var chosenUser = "6thSence";	// для проверки
-    var gitUrl = "https://api.github.com/users/";
-    var FullGitUrl = gitUrl + chosenUser;
+    // var gitUrl = "https://api.github.com/users/";
+    // var FullGitUrl = gitUrl + chosenUser;
 
 
-fetch(FullGitUrl)
+fetch("https://api.github.com/users/defunkt")
 .then(res => res.json())
 .then(json => {
 	console.log(json);
