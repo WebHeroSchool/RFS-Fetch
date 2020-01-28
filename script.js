@@ -1,6 +1,6 @@
-    // var url = new URLSearchParams(window.location.search);    
-    // var chosenUser = url.get("username");
-    var chosenUser = "6thSence";	//defunkt
+    var url = new URLSearchParams(window.location.search);    
+    var chosenUser = url.get("username");
+    // var chosenUser = "6thSence";	// для проверки
     var gitUrl = "https://api.github.com/users/";
     var FullGitUrl = gitUrl + chosenUser;
 
