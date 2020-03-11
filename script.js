@@ -1,9 +1,9 @@
-    // var url = new URLSearchParams(window.location.search);    
-    // var chosenUser = url.get("username");
+    // let url = new URLSearchParams(window.location.search);    
+    // let chosenUser = url.get("username");
     
-    // var chosenUser = "6thSence";	// для проверки
-    // var gitUrl = "https://api.github.com/users/";
-    // var FullGitUrl = gitUrl + chosenUser;
+    // let chosenUser = "6thSence";	// для проверки
+    // let gitUrl = "https://api.github.com/users/";
+    // let FullGitUrl = gitUrl + chosenUser;
 
 
 fetch("https://api.github.com/users/defunkt")
@@ -11,24 +11,24 @@ fetch("https://api.github.com/users/defunkt")
 .then(json => {
 	console.log(json);
 	if (json.message === "Not Found") {
-	    var error = document.createElement("error");
+	    let error = document.createElement("error");
 	    error.innerHTML = "Информация о пользователе не доступна!";
 	    error.classList.add("err");
 	    document.body.appendChild(error);
 	} else {
 
-		var userProfile = json.html_url;
+		let userProfile = json.html_url;
 
-		var userAvatar = document.createElement("img");
+		let userAvatar = document.createElement("img");
 			userAvatar.src = json.avatar_url;
 			document.body.appendChild(userAvatar);
 
-		var userName = document.createElement("a");
+		let userName = document.createElement("a");
 			userName.href = json.html_url;
-			userName.innerHTML = json.name;
+			userName.innerHTML = json.url.slice(29);
 			document.body.appendChild(userName);
 
-		var userBio = document.createElement("div");
+		let userBio = document.createElement("div");
 			userBio.innerHTML = json.bio;
 			document.body.appendChild(userBio);
 	}
