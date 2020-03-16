@@ -7,21 +7,20 @@ body {
   }
   
   .cube-loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    
+    
   }
 
 
- #cube-loader {
+ .container {
    align-items: center;
    display: flex;
    height: 100%;
    width: 100%;
    position: fixed;
+   overflow: hidden;
 }
- #cube-loader .caption {
+ .container .caption {
    margin: 0 auto;
 }
  #cube-loader .cube-loader {
