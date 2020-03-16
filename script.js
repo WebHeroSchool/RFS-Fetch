@@ -1,4 +1,4 @@
-const preload = document.querySelector('container');
+const preload = document.querySelector('.preload');
 const information = document.querySelector('.information');
 const params = new URLSearchParams(window.location.search);
 let userName = params.get(`username`);
@@ -18,8 +18,8 @@ const preloader = setTimeout(() => {
     information.classList.toggle('hidden');
 }, 3000);
 
-  if (params.has(`username`) && userName !== ``) {
-     Promise.all([getDate, getUserName])
+  if(params.has(`username`) && userName !== ``) {
+    Promise.all([getDate, getUserName])
     .then(([date, userName]) => {
         dateInfo = date;
         return fetch(`https://api.github.com/users/${userName}`);
@@ -60,3 +60,4 @@ const preloader = setTimeout(() => {
       information.appendChild(div);
       div.style.fontSize = "40px";
   }
+© 2020 GitHub, Inc.
