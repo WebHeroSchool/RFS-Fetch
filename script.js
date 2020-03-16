@@ -1,12 +1,29 @@
-     let url = new URLSearchParams(window.location.search);    
-     let chosenUser = url.get("username");
-    
-     //let chosenUser = "6thSence";	// для проверки
-     let gitUrl = "https://api.github.com/users/";
-     let FullGitUrl = gitUrl + chosenUser;
+let preload = document.getElementById("cube-loader");
+let url = new URLSearchParams(window.location.search);    
+let chosenUser = url.get("username");
+let date = new Date;
+let dateInfo;
+
+const getDate = new Promise((resolve, reject) => {
+    setTimeout(() => date ? resolve(date) : reject('error!'), 1000);
+});
+
+const getUserName = new Promise((resolve, reject) => {
+    setTimeout (() => chosenUser ? resolve(chosenUser) : reject('not found!'), 3000);
+});
+
+const preloader = setTimeout(() => {
+    preload.classList.toggle('hidden');
+}, 3000);
 
 
-fetch(FullGitUrl) //"https://api.github.com/users/defunkt"
+if(url.has(`username`) && chosenUser !== ``) {
+    Promise.all([getDate, getUserName])
+    .then(([date, chosenUser]) => {
+        dateInfo = date;
+        return fetch(`https://api.github.com/users/${chosenUser}`);
+})
+
 .then(res => res.json())
 .then(json => {
 	console.log(json);
