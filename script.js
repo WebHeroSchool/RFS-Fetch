@@ -1,4 +1,4 @@
-const preload = document.querySelector('.preload');
+const preload = document.querySelector('#cube-loader');
 const information = document.querySelector('.information');
 const params = new URLSearchParams(window.location.search);
 let userName = params.get(`username`);
@@ -57,7 +57,6 @@ const preloader = setTimeout(() => {
       })
   } else {
       let div = document.createElement('div');
-      div.innerHTML = 'Введите данные в URL';
       information.appendChild(div);
       div.style.fontSize = "40px";
   }
