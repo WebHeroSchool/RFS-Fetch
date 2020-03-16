@@ -57,6 +57,7 @@ const preloader = setTimeout(() => {
       })
   } else {
       let div = document.createElement('div');
+      div.innerHTML = 'Введите данные в URL';
       information.appendChild(div);
       div.style.fontSize = "40px";
   }
