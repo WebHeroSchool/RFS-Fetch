@@ -3,7 +3,7 @@ html, body {
 }
 
 body {
-    overflow: hidden;
+    overflow: hidden;#
   }
   
   .cube-loader {
@@ -23,7 +23,7 @@ body {
  .container .caption {
    margin: 0 auto;
 }
- #cube-loader .cube-loader {
+ .container .cube-loader {
    width: 73px;
    height: 73px;
    margin: 0 auto;
@@ -31,7 +31,7 @@ body {
    position: relative;
    transform: rotateZ(45deg);
 }
- #cube-loader .cube-loader .cube {
+ .container .cube-loader .cube {
    position: relative;
    transform: rotateZ(45deg);
    width: 50%;
@@ -39,7 +39,7 @@ body {
    float: left;
    transform: scale(1.1);
 }
- #cube-loader .cube-loader .cube:before {
+ .container .cube-loader .cube:before {
    content: "";
    position: absolute;
    top: 0;
@@ -50,22 +50,22 @@ body {
    animation: cube-loader 2.76s infinite linear both;
    transform-origin: 100% 100%;
 }
- #cube-loader .cube-loader .loader-2 {
+ .container .cube-loader .loader-2 {
    transform: scale(1.1) rotateZ(90deg);
 }
- #cube-loader .cube-loader .loader-3 {
+ .container .cube-loader .loader-3 {
    transform: scale(1.1) rotateZ(180deg);
 }
- #cube-loader .cube-loader .loader-4 {
+ .container .cube-loader .loader-4 {
    transform: scale(1.1) rotateZ(270deg);
 }
- #cube-loader .cube-loader .loader-2:before {
+ .container .cube-loader .loader-2:before {
    animation-delay: 0.35s;
 }
- #cube-loader .cube-loader .loader-3:before {
+ .container .cube-loader .loader-3:before {
    animation-delay: 0.69s;
 }
- #cube-loader .cube-loader .loader-4:before {
+ .container .cube-loader .loader-4:before {
    animation-delay: 1.04s;
 }
  @keyframes cube-loader {
