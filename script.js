@@ -1,6 +1,7 @@
-let preload = document.getElementById("cube-loader");
-let url = new URLSearchParams(window.location.search);    
-let chosenUser = url.get("username");
+const preload = document.querySelector('.preload');
+const information = document.querySelector('.information');
+const params = new URLSearchParams(window.location.search);
+let userName = params.get(`username`);
 let date = new Date;
 let dateInfo;
 
@@ -9,47 +10,54 @@ const getDate = new Promise((resolve, reject) => {
 });
 
 const getUserName = new Promise((resolve, reject) => {
-    setTimeout (() => chosenUser ? resolve(chosenUser) : reject('not found!'), 3000);
+    setTimeout (() => userName ? resolve(userName) : reject('not found!'), 3000);
 });
 
 const preloader = setTimeout(() => {
     preload.classList.toggle('hidden');
+    information.classList.toggle('hidden');
 }, 3000);
 
-
-if(url.has(`username`) && chosenUser !== ``) {
+  if(params.has(`username`) && userName !== ``) {
     Promise.all([getDate, getUserName])
-    .then(([date, chosenUser]) => {
+    .then(([date, userName]) => {
         dateInfo = date;
-        return fetch(`https://api.github.com/users/${chosenUser}`);
-})
+        return fetch(`https://api.github.com/users/${userName}`);
+    })
+      .then(response => response.json())
+      .then(json => {
+        if (json.message == 'Not Found') {
+          let div = document.createElement('div');
+          div.innerHTML =  'Информация о пользователе отсутствует';
+          information.appendChild(div);
+          div.style.fontSize = "30px";
+        } else {
+            let login = document.createElement('h1')
+            login.innerHTML = json.login;
+            information.appendChild(login);
 
-.then(res => res.json())
-.then(json => {
-	console.log(json);
-	if (json.message === "Not Found") {
-	    let error = document.createElement("error");
-	    error.innerHTML = "Информация о пользователе не доступна!";
-	    error.classList.add("err");
-	    document.body.appendChild(error);
-	} else {
+            let nickName = document.createElement('a');
+            nickName.setAttribute('href', json.html_url);
+            nickName.innerHTML = json.name;
+            information.appendChild(nickName);
+            nickName.style.fontSize = "40px";
 
-		let userProfile = json.html_url;
+            let userInfo = document.createElement('div');
+            userInfo.innerHTML = json.bio;
+            information.appendChild(userInfo);
 
-		let userAvatar = document.createElement("img");
-			userAvatar.src = json.avatar_url;
-			document.body.appendChild(userAvatar);
+            let avatar = document.createElement('img');
+            avatar.setAttribute('src', json.avatar_url);
+            information.appendChild(avatar);
 
-		let userName = document.createElement("a");
-			userName.href = json.html_url;
-			userName.innerHTML = json.url.slice(29);
-			document.body.appendChild(userName);
-
-		let userBio = document.createElement("div");
-			userBio.innerHTML = json.bio;
-			document.body.appendChild(userBio);
-	}
-})
-.catch(err => {
-	console.log('Информация о пользователе не доступна');
-})
+            let newDate = document.createElement('div');
+            newDate.innerHTML = dateInfo;
+            information.appendChild(newDate);
+        }
+      })
+  } else {
+      let div = document.createElement('div');
+      div.innerHTML = 'Введите данные в URL';
+      information.appendChild(div);
+      div.style.fontSize = "40px";
+  }
