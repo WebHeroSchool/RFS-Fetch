@@ -7,7 +7,9 @@ body {
   }
   
   .caption {
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
   }
 
@@ -82,3 +84,6 @@ body {
   }
 }
  
+ .hidden {
+  display: none;
+ }
