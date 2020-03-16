@@ -1,6 +1,17 @@
 html, body {
    height: 100%;
 }
+
+body {
+    overflow: hidden;
+  }
+  
+  .caption {
+    
+    overflow: hidden;
+  }
+
+
  #cube-loader {
    align-items: center;
    display: flex;
